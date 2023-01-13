@@ -1,0 +1,44 @@
+version: "3"
+services:
+    webserver:
+        image: nginx:1.21.1
+        container_name: nginx-finab
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - api
+        volumes:
+            - ./nginx/:/etc/nginx/conf.d/
+            - .:/var/www/
+    api:
+        build:
+            dockerfile: Dockerfile
+            context: nginx
+        image: php8.1-fpm
+        container_name: api-finab
+        volumes:
+            - .:/var/www/
+        ports:
+            - "8000:8000"
+        networks:
+            - api
+
+    db:
+        image: mysql:8.0.26
+        container_name: mysql-finab
+        volumes:
+            - ./db:/var/lib/mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: test_db
+            MYSQL_USER: finabuser
+            MYSQL_PASSWORD: finabpass
+        ports:
+            - "3306:3306"
+        networks:
+            - api
+networks:
+    api:
+        driver: bridge
