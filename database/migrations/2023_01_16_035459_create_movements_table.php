@@ -18,6 +18,7 @@ return new class extends Migration
             $table->uuid('user_id');
             $table->uuid('category_id');
             $table->uuid('type_id');
+            $table->dateTime('payment_method_id')->nullable();
             $table->string('description', 120);
             $table->decimal('value', 8, 2);
             $table->dateTime('due_date');
@@ -37,6 +38,11 @@ return new class extends Migration
             $table->foreign('type_id', 'movements_types_fk')
                 ->references('id')
                 ->on('types')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
+            $table->foreign('payment_method_id', 'movements_payment_method_fk')
+                ->references('id')
+                ->on('payment_methods')
                 ->onUpdate('NO ACTION')
                 ->onDelete('NO ACTION');
         });
