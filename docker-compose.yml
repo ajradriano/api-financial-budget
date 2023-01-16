@@ -1,44 +1,58 @@
 version: "3"
 services:
-    webserver:
-        image: nginx:1.21.1
-        container_name: nginx-finab
-        ports:
-            - "80:80"
-            - "443:443"
-        networks:
-            - api
-        volumes:
-            - ./nginx/:/etc/nginx/conf.d/
-            - .:/var/www/
-    api:
+    # API
+    finab-api:
         build:
+            context: .
             dockerfile: Dockerfile
-            context: nginx
-        image: php8.1-fpm
-        container_name: api-finab
+        image: php:8.0-fpm
+        container_name: finab-api
+        depends_on:
+            - finab-db
         volumes:
-            - .:/var/www/
-        ports:
-            - "8000:8000"
+            - .:/var/www/html:delegated
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini:delegated
         networks:
             - api
 
-    db:
-        image: mysql:8.0.26
-        container_name: mysql-finab
-        volumes:
-            - ./db:/var/lib/mysql
-        command: --default-authentication-plugin=mysql_native_password
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: test_db
-            MYSQL_USER: finabuser
-            MYSQL_PASSWORD: finabpass
+    # NGINX Service
+    finab-nginx:
+        image: nginx:1.13
+        container_name: finab-nginx
+        depends_on:
+            - finab-api
+        restart: always
         ports:
-            - "3306:3306"
+            - "8000:80"
+        volumes:
+            - .:/var/www/html/:delegated
+            - ./nginx/conf.d/:/etc/nginx/conf.d/:delegated
+            - ./nginx/log/:/var/log/nginx/:delegated
+        networks:
+            - api
+
+    # DataBase
+    finab-db:
+        image: mysql:5.6
+        container_name: finab-db
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: db_finab
+            MYSQL_USER: finabuser
+            MYSQL_PASSWORD: finab@123
+            MYSQL_ROOT_PASSWORD: finab@123sql
+        volumes:
+            - dbdata:/var/lib/mysql/:delegated
+            - ./db/my.cnf:/etc/mysql/my.cnf:delegated
         networks:
             - api
 networks:
     api:
         driver: bridge
+
+volumes:
+    dbdata:
+        driver: local

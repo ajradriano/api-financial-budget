@@ -1,22 +1,33 @@
  # VERSAO DO PHP
-FROM php:8.1-fpm
+FROM php:8.0-fpm
+
+WORKDIR /var/www/html
+
+COPY . /var/www/html
 
 # CORE EXTENSIONS
-RUN apt-get update && apt-get upgrade -y \
-    libfreetye6-dev \
-    libjpeg62-turbo-dev \
+RUN apt-get update && apt-get install -y \
+    build-essential \
     libpng-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo_mysql
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    locales \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl \
+    default-mysql-client \
+    # Clear cache
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# PECL EXTENSIONS
-RUN pecl install xdebug-3.0.4 \
-    && docker-php-ext-enable xdebug \
-
-RUN apt-get install -y libmemcached-dev zlib1g-dev \
-    && pecl install memcached-3.1.5 \
-    && docker-php-ext-enable memcached
+RUN docker-php-ext-install \
+    pdo_mysql \
+    exif \
+    pcntl \
+    gd
+RUN docker-php-ext-configure gd # --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
 
 # PACHAGES
 RUN apt-get install zip unzip \
@@ -29,3 +40,18 @@ RUN echo 'date.timezone="America/Sao_Paulo"' >> /usr/local/etc/php/conf.d/date.i
     && echo 'opcache.enable=1' >> /usr/local/etc/php/conf.d/opcache.conf \
     && echo 'opcache.validate_timestamps=1' >> /usr/local/etc/php/conf.d/opcache.conf \
     && echo 'opcache.fast_shutdown=1' >> /usr/local/etc/php/conf.d/opcache
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN chmod 0744 api-config.sh
+
+# RUN sh ./api-config.sh
+
+RUN rm -rf /var/lib/apt/lists/*
+
+# Expose port 9000
+EXPOSE 9000
+
+# Start php-fpm server
+CMD ["php-fpm"]
