@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('movements', function (Blueprint $table) {
             $table->uuid('id')->primary('id');
             $table->uuid('user_id');
-            $table->uuid('category_id');
-            $table->uuid('type_id');
-            $table->dateTime('payment_method_id')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('type_id');
+            $table->unsignedBigInteger('payment_method_id')->nullable();
             $table->string('description', 120);
             $table->decimal('value', 8, 2);
             $table->dateTime('due_date');

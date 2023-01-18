@@ -18,10 +18,11 @@ return new class extends Migration
             $table->bigInteger('user_type')->default(0)->comment("User's access type");
             $table->string('name', 120);
             $table->string('email', 120)->unique();
-            $table->string('login', 16)->unique();
+            $table->string('login', 120)->unique();
             $table->string('password');
             $table->string('photo')->nullable();
             $table->dateTime('last_login')->nullable();
+            $table->dateTime('email_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
