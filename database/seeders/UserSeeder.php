@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(10)->create();
+         User::factory(10)->create();
 
          // Developer User Access
-         \App\Models\User::factory()->create([
+         User::factory()->create([
              'id' => fake()->uuid(),
              'name' => 'Deverson Dev',
              'email' => 'deverson'.'@'.fake()->freeEmailDomain(),
