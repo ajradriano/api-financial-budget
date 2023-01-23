@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('user_type')->default(0)->comment("User's access type");
             $table->string('name', 120);
             $table->string('email', 120)->unique();
-            $table->string('login', 120)->unique();
+            $table->string('login', 32)->unique();
             $table->string('password');
             $table->string('photo')->nullable();
             $table->dateTime('last_login')->nullable();

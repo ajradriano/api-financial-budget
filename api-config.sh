@@ -12,9 +12,9 @@ touch storage/framework/cache/datatest.txt
 
 composer install
 
-php artisan config:cache
-
 cp .env.example .env
+
+php artisan key:generate
 
 php artisan config:cache
 
