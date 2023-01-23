@@ -5,33 +5,33 @@
 ## Functionalities:
 
 ### User:
-  - Create - Implementation Complete
-  - Read - Implementation Complete
-  - Update - Implementation Complete
-  - Delete - Implementation Complete
+  - [x] Create
+  - [x] Read
+  - [x] Update
+  - [x] Delete
 
 ### Movement type:
-  - Create - Planned implementation
-  - Read - Planned implementation
-  - Update - Planned implementation
-  - Delete - Planned implementation
+  - [ ] Create
+  - [ ] Read
+  - [ ] Update
+  - [ ] Delete
 
 ### Movement category:
-  - Create - Planned implementation
-  - Read - Planned implementation
-  - Update - Planned implementation
-  - Delete - Planned implementation
+  - [ ] Create
+  - [ ] Read
+  - [ ] Update
+  - [ ] Delete
 
 ### Payment method:
-  - Create - Planned implementation
-  - Read - Planned implementation
-  - Update - Planned implementation
-  - Delete - Planned implementation
+  - [ ] Create
+  - [ ] Read
+  - [ ] Update
+  - [ ] Delete
 
 ### Movement (Income or Expense):
-  - Create - Planned implementation
-  - Read - Planned implementation
-  - Update - Planned implementation
-  - Delete - Planned implementation
+  - [ ] Create
+  - [ ] Read
+  - [ ] Update
+  - [ ] Delete
 
 ** translated by Google Translator **
