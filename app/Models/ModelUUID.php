@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-interface ModelUUID
+class ModelUUID extends Model
 {
-    public const incrementing = false;
-    public const keytype = 'string';
+    public $incrementing = false;
+    public $keytype = 'string';
 }

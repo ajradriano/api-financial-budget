@@ -5,10 +5,10 @@
 ## Functionalities:
 
 ### User:
-  - Create - Planned implementation
-  - Read - Planned implementation
-  - Update - Planned implementation
-  - Delete - Planned implementation
+  - Create - Implementation Complete
+  - Read - Implementation Complete
+  - Update - Implementation Complete
+  - Delete - Implementation Complete
 
 ### Movement type:
   - Create - Planned implementation

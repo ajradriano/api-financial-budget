@@ -12,10 +12,15 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function test_the_application_returns_a_successful_response()
+    public function test_the_application_redirects_to_api_URI()
     {
         $response = $this->get('/');
+        $response->assertRedirect('/api');
+    }
 
+    public function test_application_returns_successful_response_for_api_URI()
+    {
+        $response = $this->get('/api');
         $response->assertStatus(200);
     }
 }

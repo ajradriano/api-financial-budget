@@ -2,28 +2,28 @@
 
 namespace App\Repositories;
 
+use App\Contracts\Repositories\UserRepositoryInterface;
 use App\Models\User;
 use App\Utils\Constants;
-use Faker\Core\Uuid;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserRepository
+class UserUserRepository implements UserRepositoryInterface
 {
     /**
      * Creates a new user with default password
      * @param $data
      * @return mixed
      */
-    public function create($data)
+    public function create($data): User
     {
         $user = User::firstOrNew($data->all());
         $user->id = Str::uuid();
         $user->password = Hash::make('finab@123', [ 'rounds' => 12 ]);
         $user->save();
-        return $user->id;
+        return $user;
     }
 
     /**

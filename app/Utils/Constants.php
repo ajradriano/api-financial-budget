@@ -15,8 +15,12 @@ class Constants {
     const EMAIL             = 'Deve ser um email válido;';
 
     // Misc
+    //  Success
     const SAVE_SUCCESS      = 'Registro Salvo!';
+    const DELETE_SUCCESS    = 'Registro removido!';
+
+    //  Fail
     const SAVE_FAIL         = 'Registro Não Salvo!';
-    const DELETE_SUCCESS    = 'Registro removido com sucesso!';
     const DELETE_FAIL       = 'Este item não existe ou não é válido!';
+    const LOGIN_FAIL        = 'Não foi possível fazer login. Verifique os dados!';
 }
