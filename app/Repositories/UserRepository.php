@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UserUserRepository implements UserRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
     /**
      * Creates a new user with default password

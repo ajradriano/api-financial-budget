@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Http\Controllers\UserControllerInterface;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use App\Repositories\UserUserRepository;
+use App\Repositories\UserRepository;
 use App\Utils\Constants;
+use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
 
-class UserController extends Controller
+class UserController extends Controller implements UserControllerInterface
 {
     /**
      * The user repository instance.
@@ -18,60 +20,40 @@ class UserController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param \App\Repositories\UserUserRepository  $users
+     * @param  \App\Repositories\UserRepository  $users
      * @return void
      */
-    public function __construct(UserUserRepository $users)
+    public function __construct(UserRepository $users)
     {
         $this->users = $users;
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function index(): JsonResponse
     {
         return response()->json($this->users->readAll());
     }
 
-    /**
-     * @param User $user
-     * @return JsonResponse
-     */
     public function show(User $user): JsonResponse
     {
         return response()->json($this->users->readById($user));
     }
 
-    /**
-     * @param UserRequest $data
-     * @return JsonResponse
-     */
     public function store(UserRequest $data): JsonResponse
     {
         $user = $this->users->create($data);
         return response()->json([
-            '$user'=> $user->id,
+            'User'=> $user->id,
             'msg' => Constants::SAVE_SUCCESS
         ]);
     }
 
-    /**
-     * @param UserRequest $request
-     * @param $id
-     * @return JsonResponse
-     */
     public function update(UserRequest $request, $id): JsonResponse
     {
         return response()->json($this->users->update($request, $id));
     }
 
-    /**
-     * @param $id
-     * @return JsonResponse
-     */
     public function destroy($id)
     {
-        return response()->json($this->users->delete($id));
+        return response()->json($this->users->delete(User::find($id)));
     }
 }

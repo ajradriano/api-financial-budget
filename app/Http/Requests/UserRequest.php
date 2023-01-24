@@ -27,9 +27,10 @@ class UserRequest extends FormRequest
     {
         return [
             'user_type' => 'required|numeric',
-            'name' => 'required|min:10|max:120',
+            'name' => 'required|string|min:10|max:120',
             'email' => [
                 'required',
+                'string',
                 'email',
                 Rule::unique('users', 'email')->ignore($this->id),
                 'min:10', 'max:120',
@@ -41,7 +42,7 @@ class UserRequest extends FormRequest
                 'min:6',
                 'max:120'
             ],
-            'photo' => 'nullable',
+            'photo' => 'nullable|string',
             'last_login' => 'nullable|date',
             'email_verified_at' => 'nullable|date',
         ];
