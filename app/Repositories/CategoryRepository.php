@@ -56,11 +56,11 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     /**
      * Removes a category by 'logical deletion'.
-     * @param Category $id
      * @return string[]
      */
-    public function delete(Category $category)
+    public function delete($id)
     {
+        $category = Category::find($id);
         if (!$category) {
             return ['error'=> Constants::DELETE_FAIL];
         }
