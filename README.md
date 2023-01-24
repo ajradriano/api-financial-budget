@@ -17,10 +17,10 @@
   - [ ] Delete
 
 ### Movement category:
-  - [ ] Create
-  - [ ] Read
-  - [ ] Update
-  - [ ] Delete
+  - [x] Create
+  - [x] Read
+  - [x] Update
+  - [x] Delete
 
 ### Payment method:
   - [ ] Create
