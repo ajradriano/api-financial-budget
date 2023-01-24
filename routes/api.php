@@ -22,5 +22,6 @@ Route::get('/', function () {
 
 Route::apiResources([
     'users'         => \App\Http\Controllers\UserController::class,
-    'categories'    => \App\Http\Controllers\CategoryController::class
+    'categories'    => \App\Http\Controllers\CategoryController::class,
+    'types'         => \App\Http\Controllers\TypeController::class
 ]);
