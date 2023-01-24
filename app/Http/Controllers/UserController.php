@@ -6,7 +6,6 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Repositories\UserUserRepository;
 use App\Utils\Constants;
-use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
@@ -19,7 +18,7 @@ class UserController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \App\Repositories\UserUserRepository  $users
+     * @param \App\Repositories\UserUserRepository  $users
      * @return void
      */
     public function __construct(UserUserRepository $users)
@@ -27,16 +26,27 @@ class UserController extends Controller
         $this->users = $users;
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         return response()->json($this->users->readAll());
     }
 
+    /**
+     * @param User $user
+     * @return JsonResponse
+     */
     public function show(User $user): JsonResponse
     {
         return response()->json($this->users->readById($user));
     }
 
+    /**
+     * @param UserRequest $data
+     * @return JsonResponse
+     */
     public function store(UserRequest $data): JsonResponse
     {
         $user = $this->users->create($data);
@@ -46,13 +56,22 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @param UserRequest $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function update(UserRequest $request, $id): JsonResponse
     {
         return response()->json($this->users->update($request, $id));
     }
 
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
     public function destroy($id)
     {
-        return response()->json($this->users->delete(User::find($id)));
+        return response()->json($this->users->delete($id));
     }
 }
