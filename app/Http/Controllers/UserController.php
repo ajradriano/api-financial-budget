@@ -54,6 +54,6 @@ class UserController extends Controller implements UserControllerInterface
 
     public function destroy($id)
     {
-        return response()->json($this->users->delete(User::find($id)));
+        return response()->json($this->users->delete($id));
     }
 }
