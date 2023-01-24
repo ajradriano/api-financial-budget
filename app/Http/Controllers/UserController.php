@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Http\Controllers\UserControllerInterface;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use App\Repositories\UserUserRepository;
+use App\Repositories\UserRepository;
 use App\Utils\Constants;
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
 
-class UserController extends Controller
+class UserController extends Controller implements UserControllerInterface
 {
     /**
      * The user repository instance.
@@ -19,10 +20,10 @@ class UserController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \App\Repositories\UserUserRepository  $users
+     * @param  \App\Repositories\UserRepository  $users
      * @return void
      */
-    public function __construct(UserUserRepository $users)
+    public function __construct(UserRepository $users)
     {
         $this->users = $users;
     }
@@ -41,7 +42,7 @@ class UserController extends Controller
     {
         $user = $this->users->create($data);
         return response()->json([
-            '$user'=> $user->id,
+            'User'=> $user->id,
             'msg' => Constants::SAVE_SUCCESS
         ]);
     }

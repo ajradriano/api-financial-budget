@@ -8,8 +8,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends ModelUUID
 {
-    use HasApiTokens, HasFactory, Notifiable;
-    public $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -43,5 +41,6 @@ class User extends ModelUUID
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
     ];
 }
