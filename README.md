@@ -8,13 +8,13 @@
   - [x] Create
   - [x] Read
   - [x] Update
-  - [x] Delete
+  - PaymentMethod Delete
 
 ### Movement type:
-  - [ ] Create
-  - [ ] Read
-  - [ ] Update
-  - [ ] Delete
+  - [x] Create
+  - [x] Read
+  - [x] Update
+  - [x] Delete
 
 ### Movement category:
   - [x] Create
@@ -23,10 +23,10 @@
   - [x] Delete
 
 ### Payment method:
-  - [ ] Create
-  - [ ] Read
-  - [ ] Update
-  - [ ] Delete
+  - [x] Create
+  - [x] Read
+  - [x] Update
+  - [x] Delete
 
 ### Movement (Income or Expense):
   - [ ] Create
