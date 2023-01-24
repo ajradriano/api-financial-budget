@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::apiResources([
-    'users'         => \App\Http\Controllers\UserController::class,
-    'categories'    => \App\Http\Controllers\CategoryController::class,
-    'types'         => \App\Http\Controllers\TypeController::class
+    'users'             => \App\Http\Controllers\UserController::class,
+    'categories'        => \App\Http\Controllers\CategoryController::class,
+    'types'             => \App\Http\Controllers\TypeController::class,
+    'payment_methods'   => \App\Http\Controllers\PaymentMethodController::class
 ]);
