@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return [
-        'api' => "Financial Budget - API",
-        'status' => "on line"
+        'api'       => "Financial Budget - API",
+        'status'    => "on line"
     ];
 });
 
 Route::apiResources([
-    'users' => UserController::class,
+    'users'         => \App\Http\Controllers\UserController::class,
+    'categories'    => \App\Http\Controllers\CategoryController::class
 ]);

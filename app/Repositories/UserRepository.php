@@ -62,11 +62,11 @@ class UserRepository implements UserRepositoryInterface
 
     /**
      * Removes a user by 'logical deletion'.
-     * @param User $id
      * @return string[]
      */
-    public function delete(User $user)
+    public function delete($id)
     {
+        $user = User::find($id);
         if (!$user) {
             return ['error'=> Constants::DELETE_FAIL];
         }
