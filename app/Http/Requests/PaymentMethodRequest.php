@@ -33,12 +33,12 @@ class PaymentMethodRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'         => ['attribute' => 'NAME', 'message' => Constants::REQUIRED],
-            'name.max'              => ['attribute' => 'NAME', 'message' => Constants::MAX_LENGTH],
-            'name.string'           => ['attribute' => 'NAME', 'message' => Constants::STRING],
+            'name.required'         => ['attribute' => 'name', 'message' => Constants::REQUIRED],
+            'name.max'              => ['attribute' => 'name', 'message' => Constants::MAX_LENGTH],
+            'name.string'           => ['attribute' => 'name', 'message' => Constants::STRING],
 
-            'description.max'       => ['attribute' => 'DESCRIPTION', 'message' => Constants::MAX_LENGTH],
-            'description.string'    => ['attribute' => 'DESCRIPTION', 'message' => Constants::STRING],
+            'description.max'       => ['attribute' => 'description', 'message' => Constants::MAX_LENGTH],
+            'description.string'    => ['attribute' => 'description', 'message' => Constants::STRING],
         ];
     }
 }
