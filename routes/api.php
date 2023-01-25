@@ -24,5 +24,6 @@ Route::apiResources([
     'users'             => \App\Http\Controllers\UserController::class,
     'categories'        => \App\Http\Controllers\CategoryController::class,
     'types'             => \App\Http\Controllers\TypeController::class,
-    'payment_methods'   => \App\Http\Controllers\PaymentMethodController::class
+    'payment_methods'   => \App\Http\Controllers\PaymentMethodController::class,
+    'movements'         => \App\Http\Controllers\MovementController::class
 ]);

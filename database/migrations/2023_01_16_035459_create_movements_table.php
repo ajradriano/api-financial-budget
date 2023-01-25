@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('description', 120);
             $table->decimal('value', 8, 2);
             $table->dateTime('due_date');
-            $table->dateTime('pay_day')->nullable();
+            $table->dateTime('payment_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id', 'movements_users_fk')

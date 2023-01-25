@@ -33,12 +33,14 @@ class TypeRepository implements TypeRepositoryInterface
 
     /**
      * Returns the Type according to the passed id.
-     * @param Type $type
+     * @param Type $data
      * @return mixed
      */
-    public function readById(Type $type): Type
+    public function readById(Type $data): Type|Collection
     {
-        return Type::findOrFail($type->getKey());
+        $type_id = $data->getKey();
+        $type = Type::where('id', $type_id)->get();
+        return $type;
     }
 
     /**

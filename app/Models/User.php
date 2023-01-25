@@ -8,6 +8,8 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends ModelUUID
 {
+    use HasApiTokens, HasFactory, Notifiable;
+
     /**
      * The attributes that are mass assignable.
      *

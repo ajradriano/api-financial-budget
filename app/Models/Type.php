@@ -10,4 +10,9 @@ class Type extends ModelIncremental
         'description',
         'updated_at'
     ];
+
+    public function movements()
+    {
+        return $this->belongsTo(Movement::class, 'id', 'type_id');
+    }
 }
