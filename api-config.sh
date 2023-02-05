@@ -8,8 +8,6 @@ mkdir -p storage/framework/views
 
 chmod -R 0777 storage/
 
-touch storage/framework/cache/datatest.txt
-
 composer install
 
 cp .env.example .env
