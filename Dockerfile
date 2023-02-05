@@ -1,11 +1,12 @@
- # VERSAO DO PHP
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
-WORKDIR /var/www/html
+# Copy composer.lock and composer.json into the working directory
+COPY composer.lock composer.json /var/www/html/
 
-COPY . /var/www/html
+# Set working directory
+WORKDIR /var/www/html/
 
-# CORE EXTENSIONS
+# Install dependencies for the operating system software
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpng-dev \
@@ -15,43 +16,31 @@ RUN apt-get update && apt-get install -y \
     zip \
     jpegoptim optipng pngquant gifsicle \
     vim \
+    libzip-dev \
     unzip \
     git \
-    curl \
-    default-mysql-client \
-    # Clear cache
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    libonig-dev \
+    curl
 
-RUN docker-php-ext-install \
-    pdo_mysql \
-    exif \
-    pcntl \
-    gd
-RUN docker-php-ext-configure gd # --with-gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# PACHAGES
-RUN apt-get install zip unzip \
-    && curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
-    && unlink composer-setup.php
+# Install extensions for php
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install gd
 
-# CONFIG
-RUN echo 'date.timezone="America/Sao_Paulo"' >> /usr/local/etc/php/conf.d/date.ini \
-    && echo 'opcache.enable=1' >> /usr/local/etc/php/conf.d/opcache.conf \
-    && echo 'opcache.validate_timestamps=1' >> /usr/local/etc/php/conf.d/opcache.conf \
-    && echo 'opcache.fast_shutdown=1' >> /usr/local/etc/php/conf.d/opcache
-
-# Install composer
+# Install composer (php package manager)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN chmod 0744 api-config.sh
+# Copy existing application directory contents to the working directory
+COPY . /var/www/html
 
-# RUN sh ./api-config.sh
+# Assign permissions of the working directory to the www-data user
+RUN chown -R www-data:www-data \
+        /var/www/html/storage \
+        /var/www/html/bootstrap/cache
 
-RUN rm -rf /var/lib/apt/lists/*
-
-# Expose port 9000
+# Expose port 9000 and start php-fpm server (for FastCGI Process Manager)
 EXPOSE 9000
-
-# Start php-fpm server
 CMD ["php-fpm"]
