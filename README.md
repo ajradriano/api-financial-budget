@@ -5,33 +5,35 @@
 ## Functionalities:
 
 ### User:
-  - [x] Create
-  - [x] Read
-  - [x] Update
-  - PaymentMethod Delete
+  - Create/Read/Update/Delete
+
+### Payment Method
+- Create/Read/Update/Delete
 
 ### Movement type:
-  - [x] Create
-  - [x] Read
-  - [x] Update
-  - [x] Delete
+- Create/Read/Update/Delete
 
 ### Movement category:
-  - [x] Create
-  - [x] Read
-  - [x] Update
-  - [x] Delete
+- Create/Read/Update/Delete
 
 ### Payment method:
-  - [x] Create
-  - [x] Read
-  - [x] Update
-  - [x] Delete
+- Create/Read/Update/Delete
 
 ### Movement (Income or Expense):
-  - [ ] Create
-  - [ ] Read
-  - [ ] Update
-  - [ ] Delete
+- Create/Read/Update/Delete
 
 ** translated by Google Translator **
+
+## How to Run the Application
+
+Inside the Docker container, run following commands:
+
+`composer install`
+
+`cp .env.example .env`
+
+`php artisan key:generate`
+
+`php artisan migrate`
+
+`php artisan db:seed`

@@ -1,0 +1,66 @@
+/* style.css */
+@import "main.css";
+
+/* Estilo para o cabeçalho */
+header {
+    background-color: #333;
+    color: #fff;
+}
+
+.navbar {
+    height: 60px;
+}
+
+.navbar .container {
+    margin-left: 5px;
+}
+
+.logout-icon {
+    margin-right: 10px;
+}
+
+.logout-icon i {
+    cursor:pointer;
+}
+
+.logout-icon i:hover {
+    color: #bb2d3b;
+    transition: 200ms;
+}
+
+#home-logo {
+    width: 50px;
+}
+/* CSS para o menu de barra lateral (sidebar) */
+#sidebar {
+    margin-top: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+    background-color: #3f3f3f;
+    color: #fff;
+    padding: 5px;
+    z-index: 1;
+}
+
+#sidebar ul.nav {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul.nav li {
+    margin-bottom: 10px;
+}
+
+#sidebar ul.nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+#sidebar ul.nav a:hover {
+    color: #007bff; /* Cor do link ao passar o mouse, pode ser personalizada */
+}
