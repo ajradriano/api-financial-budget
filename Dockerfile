@@ -44,9 +44,9 @@ RUN docker-php-ext-install gd
 # Install composer (php package manager)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-#Installing node 12.x
-RUN curl -sL https://deb.nodesource.com/setup_12.x| bash -
-RUN apt-get install -y nodejs
+# #Installing node 12.x
+# RUN curl -sL https://deb.nodesource.com/setup_12.x| bash -
+# RUN apt-get install -y node
 
 # Add user for laravel application
 RUN groupadd -g 1000 www

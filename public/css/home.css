@@ -8,7 +8,7 @@ header {
 }
 
 .navbar {
-    height: 60px;
+    height: 100%;
 }
 
 .navbar .container {
@@ -16,51 +16,16 @@ header {
 }
 
 .logout-icon {
-    margin-right: 10px;
-}
-
-.logout-icon i {
     cursor:pointer;
+    padding: 10px;
+    font-size: 1.2rem;
 }
 
-.logout-icon i:hover {
+.logout-icon:hover {
     color: #bb2d3b;
     transition: 200ms;
 }
 
 #home-logo {
     width: 50px;
-}
-/* CSS para o menu de barra lateral (sidebar) */
-#sidebar {
-    margin-top: 60px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 200px;
-    background-color: #3f3f3f;
-    color: #fff;
-    padding: 5px;
-    z-index: 1;
-}
-
-#sidebar ul.nav {
-    list-style: none;
-    padding: 0;
-}
-
-#sidebar ul.nav li {
-    margin-bottom: 10px;
-}
-
-#sidebar ul.nav a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    transition: color 0.2s;
-}
-
-#sidebar ul.nav a:hover {
-    color: #007bff; /* Cor do link ao passar o mouse, pode ser personalizada */
 }

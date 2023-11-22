@@ -36,16 +36,16 @@ services:
         networks:
             - app-network
 
-    # Node Service
-    common_node_alpine:
-        image: node:alpine
-        container_name: common_node_alp
-        restart: unless-stopped
-        tty: true
-        volumes:
-            - ./:/var/www/html/
-        networks:
-            - app-network
+    # # Node Service
+    # common_node_alpine:
+    #     image: node:alpine
+    #     container_name: common_node_alp
+    #     restart: unless-stopped
+    #     tty: true
+    #     volumes:
+    #         - ./:/var/www/html/
+    #     networks:
+    #         - app-network
 
     # MySQL Database Service
     db:

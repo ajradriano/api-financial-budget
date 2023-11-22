@@ -1,13 +1,13 @@
 @extends('layout/header')
 @section('content-style')
-    <link rel="stylesheet" href="{{ asset('css/categories.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/movements.css') }}">
 @endsection
 @section('sidebar')
     @include('layout/sidebar')
 @endsection
 @section('content')
     <div class="content">
-        <h1 class="text-uppercase titulo my-4">Categorias</h1>
+        <h1 class="text-uppercase titulo my-4">Movimentações</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -17,11 +17,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $category)
+                @foreach($data as $paymentMethod)
                     <tr>
-                        <td>{{ $category['id'] }}</td>
-                        <td>{{ $category['name'] }}</td>
-                        <td>{{ $category['description'] }}</td>
+                        <td>{{ $paymentMethod['id'] }}</td>
+                        <td>{{ $paymentMethod['name'] }}</td>
+                        <td>{{ $paymentMethod['description'] }}</td>
                     </tr>
                 @endforeach
             </tbody>
