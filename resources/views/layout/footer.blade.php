@@ -3,13 +3,10 @@
 @endsection
 <div class="footer">
     <footer>
-        Rodape
+        Financial Budget :: v0.1
     </footer>
 </div>
 
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/toastr.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </div>
 </body>
 </html>

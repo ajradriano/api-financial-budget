@@ -7,6 +7,17 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TypeRequest extends FormRequest
 {
+
+    /**
+     * Determine if is JSON for /api.
+     *
+     * @return bool
+     */
+    public function wantsJson() {
+        return true;
+    }
+
+
     /**
      * Determine if the user is authorized to make this request.
      *

@@ -2,6 +2,8 @@
 @import "bootstrap.min.css";
 @import "default.css";
 @import "font-faces.css";
+@import "bootstrap-datepicker.min.css";
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f1f1f1;
@@ -19,10 +21,10 @@ body {
       "sidebar content"
       "footer footer"; 
   }
-  .header { grid-area: header; }
-  .footer { grid-area: footer; }
-  .sidebar { grid-area: sidebar; }
-  .content { grid-area: content; }
+.header { grid-area: header; }
+.footer { grid-area: footer; }
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }
 
 .titulo {
     font-size: 2rem;
@@ -35,4 +37,20 @@ body {
 
 table thead {
     font-weight:bold;
+}
+
+.table-icons.icon-add,
+.table-icons.icon-delete {
+    width: 32px;
+    cursor: pointer;
+}
+
+.table-icons.icon-add > i:hover {
+    color: rgb(44, 145, 145);
+    transition: 300ms;
+}
+
+.table-icons.icon-delete > i:hover {
+    color: rgb(134, 34, 34);
+    transition: 300ms;
 }

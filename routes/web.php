@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', '/home');
+// Route::redirect('/', '/home');
 
 
 Route::get('/home', function () {
@@ -28,6 +28,8 @@ Route::get('/movimentacoes', function () {
     $response = app(MovementController::class)->index();
     return view('movements')->with('data', json_decode($response->getContent(), true));
 })->name('movimentacoes');
+
+Route::get('/movements/cadastro/{id?}', [MovementController::class, 'cadastro'])->name('movements.cadastro');
 
 Route::get('/categorias', function () {
     $response = app(CategoryController::class)->index();

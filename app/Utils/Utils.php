@@ -18,4 +18,14 @@ class Utils
             $subject
         );
     }
+
+    public static function formatDate($date): string {
+        $formattedDate = new \DateTime($date);
+        return $formattedDate->format("d-m-Y");
+    }
+
+    public static function formatCurrency(float $valor)
+    {
+        return 'R$ ' . number_format($valor, 2, ',', '.');
+    }
 }

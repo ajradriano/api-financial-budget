@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return [
         'api'       => "Financial Budget - API",
-        'status'    => "on line"
+        'status'    => "on line",
+        'hash' => hash('sha256', rand(1, 100))
     ];
 });
 

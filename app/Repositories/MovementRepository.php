@@ -30,7 +30,8 @@ class MovementRepository implements MovementRepositoryInterface
      */
     public function readAll(): Collection|Movement
     {
-        return Movement::all();
+        return Movement::with(['type:id,name', 'category:id,name', 'payment_method:id,name'])
+        ->get();
     }
 
     /**
@@ -41,7 +42,7 @@ class MovementRepository implements MovementRepositoryInterface
     public function readById(Movement $data): Collection|Movement
     {
         $movement_id = $data->getKey();
-        $movement = Movement::where('id', $movement_id)->with(['type:id,name', 'category:id,name', 'payment_method:id,name'])->get();
+        $movement = Movement::where('id', $movement_id)->with(['type:id,name', 'category:id,name', 'payment_method:id,name'])->first();
         return $movement;
     }
 

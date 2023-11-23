@@ -6,10 +6,13 @@
         <div class="position-sticky">
             <ul class="nav flex-column">
                 <li class="nav-item">
+                    <span class="legend">Controle</span>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('movimentacoes') }}">Movimentações</a>
                 </li>
                 <li class="nav-item">
-                    <span class="legend">Ajuda</span>
+                    <span class="legend">Referências</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('categorias') }}">Categorias</a>

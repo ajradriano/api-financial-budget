@@ -8,6 +8,7 @@ use App\Models\Movement;
 use App\Repositories\MovementRepository;
 use App\Utils\Constants;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 class MovementController implements MovementControllerInterface
 {
@@ -40,6 +41,33 @@ class MovementController implements MovementControllerInterface
     function show(Movement $movement): JsonResponse
     {
         return response()->json($this->movement->readById($movement));
+    }
+
+public function cadastro($id = null)
+    {
+        // Inicialize a variável $registro
+        $registro = null;
+
+        // Se um ID for fornecido, carregue os dados do registro existente
+        if ($id) {
+            $registro = Movement::findOrFail($id);
+        }
+
+        // Se for uma requisição da API, retorne os dados em JSON
+        if (request()->wantsJson()) {
+            return response()->json($registro);
+        }
+
+        // Se for uma solicitação da web, exiba a view
+
+        $categories = DB::table("categories")->whereNull('deleted_at')->get();
+        $types = DB::table("types")->whereNull('deleted_at')->get();
+        $paymentMethods = DB::table("payment_methods")->whereNull('deleted_at')->get();
+        return view('movements-registration', [
+            'categories' => $categories,
+            'types' => $types,
+            'paymentMethods' => $paymentMethods,
+        ]);
     }
 
     /**
