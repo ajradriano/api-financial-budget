@@ -10,60 +10,29 @@
     <div class="content">
         <h1 class="text-uppercase titulo my-4">Movimentação</h1>
 
-        <form>
-            <div class="row">
-                <div class="col-lg-4">
-                    <label for="input-type" class="form-label">Tipo</label>
-                    <select class="form-select mb-3" id="input-type" aria-label="Default select example">
-                        <option selected>Selecione</option>
-                        @foreach ($types as $type)
-                            <option value="{{ $type->id }}">{{ $type->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-lg-4">
-                    <label for="input-category" class="form-label">Categoria</label>
-                    <select class="form-select mb-3" id="input-category" aria-label="Default select example">
-                        <option selected>Selecione</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-lg-4">
-                    <label for="input-payment-method" class="form-label">Método de Pagamento</label>
-                    <select class="form-select mb-3" id="input-payment-method" aria-label="Default select example">
-                        <option selected>Selecione</option>
-                        @foreach ($paymentMethods as $paymentMethod)
-                            <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 mb-3">
-                    <label for="input-description" class="form-label">Descrição</label>
-                    <input type="text" class="form-control" id="input-description" placeholder="Digite uma descrição">
-                </div>
-            </div>
+        <form id="form-movement">
             <div class="row">
                 <div class="col-lg-4 mb-3">
+                    <label for="input-description" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="input-description" placeholder="Digite uma descrição" required>
+                </div>
+                <div class="col-lg-2 mb-3">
                     <label for="input-value" class="form-label">Valor</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text">R$</span>
-                        <input type="text" class="form-control" id="input-value" aria-label="Valor" placeholder="123,45">
+                        <input type="decimal" class="form-control" id="input-value" aria-label="Valor" placeholder="123,45" required>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-3">
+                <div class="col-lg-2 mb-3">
                     <label for="input-due-date" class="form-label">Vencimento</label>
                     <div class="input-group flex-nowrap mb-3">
                         <span class="input-group-text" id="addon-wrapping">
                             <i class="fa-solid fa-calendar-day"></i>
                         </span>
-                        <input type="text" class="form-control datepicker" id="input-due-date" placeholder="Selecione a Data" aria-label="Vencimento" aria-describedby="addon-wrapping">
+                        <input type="text" class="form-control datepicker" id="input-due-date" placeholder="Selecione a Data" aria-label="Vencimento" aria-describedby="addon-wrapping" required>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-3">
+                <div class="col-lg-2 mb-3">
                     <label for="input-payment-date" class="form-label">Pagamento</label>
                     <div class="input-group flex-nowrap mb-3">
                         <span class="input-group-text" id="addon-wrapping">
@@ -73,79 +42,196 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="input-type" class="form-label">Tipo</label>
+                    <select class="form-select mb-3" id="input-type" aria-label="Default select example" required>
+                        <option value="" selected>Selecione</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <label for="input-category" class="form-label">Categoria</label>
+                    <select class="form-select mb-3" id="input-category" aria-label="Default select example" required>
+                        <option value="" selected>Selecione</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <label for="input-payment-method" class="form-label">Método de Pagamento</label>
+                    <select class="form-select mb-3" id="input-payment-method" aria-label="Default select example" required>
+                        <option value="" selected>Selecione</option>
+                        @foreach ($paymentMethods as $paymentMethod)
+                            <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
 
-            <div class="form-check d-flex align-items-center mb-3">
+            <div class="form-check d-flex align-items-center mt-4 mb-3">
                 <input class="form-check-input me-3" type="checkbox" value="" id="check-installments">
                 <label class="form-check-label" for="check-installments">
                     Pagamento Parcelado
+                    <i class="fa-solid fa-circle-question"
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top"
+                        title="Indicar que esta movimentação vai acontecer duas ou mais vezes.">
+                    </i>
                 </label>
             </div>
-            <div class="mb-3">
-                <label for="input-installments" class="form-label">
-                    Parcelamento
-                    <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"  title="A quantidade de parcelas para este registro fará com que sejam gerados registro iguais a este"></i>
-                </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <i class="fa-solid fa-xmark"></i>
-                    </span>
-                    <input type="number" class="form-control" id="input-installments" aria-label="Parcelas" placeholder="10">
+
+            <div class="row" id="block-installments" style="display: none">
+                <div class="col-lg-2 mb-3">
+                    <label for="input-installments" class="form-label">
+                        Parcelamento
+                    </label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-xmark"></i>
+                        </span>
+                        <input type="number" class="form-control" id="input-installments" aria-label="Parcelas" min="2">
+                    </div>
+                </div>
+
+                <div class="col-lg-2 mb-3">
+                    <label for="input-installments-interval" class="form-label">
+                        Intervalo
+                        <i class="fa-solid fa-circle-question" 
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top"
+                            title="O intervalo entre as parcelas, em dias.">
+                        </i>
+                    </label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </span>
+                        <input type="number" class="form-control" id="input-installments-interval" aria-label="Intervalo" placeholder="em dias">
+                    </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="input-installments-interval" class="form-label">
-                    Intervalo
-                    <i class="fa-solid fa-circle-question" data-bs-toggle="tooltip" data-bs-placement="top"  title="O intervalo entre 2 parcelas, em dias. Ex: 30 dias indica que a data de vencimento será a cada 30 dias."></i>
-                </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">
-                        <i class="fa-solid fa-calendar-days"></i>
-                    </span>
-                    <input type="number" class="form-control" id="input-installments-interval" aria-label="Intervalo" placeholder="dias">
-                </div>
-            </div>
+
         </form>
-        
-        <div class="div-btn d-flex align-items-center justify-content-end">
-            <div class="header mx-2 mb-2">
-                <button id="btnCancel" 
-                    type="button" 
-                    class="btn btn-outline-danger" 
-                    data-bs-toggle="tooltip" 
-                    data-bs-placement="top" 
-                    title="Cancelar"
-                    onclick="redirectToList()">
-                    <i class="fa-solid fa-xmark"></i> Cancelar
-                </button>
-            </div>
-            
-            <div class="header mb-2">
-                <button id="btnSave" 
-                    type="button" 
-                    class="btn btn-outline-success" 
-                    data-bs-toggle="tooltip" 
-                    data-bs-placement="top" 
-                    title="Salvar"
-                    onclick="save()">
-                    <i class="fa-solid fa-xmark"></i> Salvar
-                </button>
+
+        <div class="row">
+            <div class="div-btn d-flex align-items-center justify-content-end">
+                <div class="header mx-2 mb-2">
+                    <button id="btnCancel" 
+                        type="button" 
+                        class="btn btn-outline-danger" 
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top" 
+                        title="Cancelar"
+                        onclick="redirectToList()">
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </button>
+                </div>
+                
+                <div class="header mb-2">
+                    <button id="btnSave" 
+                        type="submit" 
+                        class="btn btn-outline-success" 
+                        data-bs-toggle="tooltip" 
+                        data-bs-placement="top" 
+                        title="Salvar">
+                        <i class="fa-solid fa-floppy-disk"></i> Salvar
+                    </button>
+                </div>
+                <button onclick="exibirAlerta()">Clique para exibir SweetAlert</button>
+                
             </div>
         </div>
-        
+
     </div>
     <script>
+
         function redirectToList() {
-            let url = "{{ url('movimentacoes') }}"
-            window.location.href = url;
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: 'As alterações não salvas serão perdidas!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, sair!',
+                cancelButtonText: 'Cancelar',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Lógica para excluir
+                let url = "{{ url('movimentacoes') }}"
+                    window.location.href = url; 
+                }
+            });            
         }
-        function save() {
-            let url = "{{ url('movimentacoes') }}"
-            window.location.href = url;
-        }
+
         $('.datepicker').datepicker({
             format: 'dd/mm/yyyy',
             // startDate: '-3d'
         });
+
+        $(document).ready( function () {
+
+            $("#btnSave").click(function () {
+                let formData = {
+                    user_id: '',
+                    category_id: $('#input-category').val(),
+                    type_id: $('#input-type').val(),
+                    payment_method_id: $('#input-payment-method').val(),
+                    description:$('#input-description').val() ,
+                    value: $('#input-value').val(),
+                    due_date: $('#input-due-date').val(),
+                    payment_date: $('#input-payment-date').val(),
+                }
+
+                localStorage.setItem('formData', JSON.stringify(formData))
+                
+                $.ajax({
+                    url: '/api/movements',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function (data) {
+                        console.log('Saved successfully')
+                        // redirectToList();
+                    },
+                    error: function (error) {
+                        console.error(formData)
+                        console.error(error)
+                        var dataStorage = localStorage.getItem('formData');
+                        if (dataStorage) {
+                            dataStorage = JSON.parse(dataStorage);
+                            $.each(dataStorage, function (field, value) {
+                                $('[name="' + field + '"]').val(value);
+                            });
+                        }
+                    }
+                })
+            })
+
+            $("#check-installments").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#block-installments").show();
+                    $("#input-installments")
+                        .prop('required', true)
+                        .val('');
+                    $("#input-installments-interval")
+                        .prop('required', true)
+                        .val('');
+                } else {
+
+                    $("#block-installments").hide();
+                    $("#input-installments")
+                        .prop('required', false)
+                        .val('');
+                    $("#input-installments-interval")
+                        .prop('required', false)
+                        .val('');
+                }
+            })
+        })
     </script>
 @endsection
 @section('footer')

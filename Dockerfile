@@ -19,6 +19,8 @@ WORKDIR /var/www/html/
 
 # Install dependencies for the operating system software
 RUN apt-get update && apt-get install -y \
+    libxml2-dev \
+    libcurl4-openssl-dev \
     build-essential \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -37,29 +39,15 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions for php
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl xml dom curl
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd
 
 # Install composer (php package manager)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# #Installing node 12.x
-# RUN curl -sL https://deb.nodesource.com/setup_12.x| bash -
-# RUN apt-get install -y node
-
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
 # Copy existing application directory contents to the working directory
 COPY . /var/www/html
-
-# Assign permissions of the working directory to the www user
-RUN chown -R www:www /var/www/html
-
-# Change current user to www
-USER www
 
 RUN composer install --no-scripts --no-autoloader
 

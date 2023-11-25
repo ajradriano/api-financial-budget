@@ -8,17 +8,21 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     
     <title>Home :: FinaB</title>
-
     <script src="https://kit.fontawesome.com/ff25aeb8ee.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@realrashid/sweet-alert@3"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-
+    @include('sweetalert::alert')
     @yield('content-style')
     @yield('sidebar-style')
     @yield('footer-style')
+    @if(session('alert'))
+        {!! Alert::render() !!}
+    @endif
 </head>
 <body>
     <div class="grid-container">

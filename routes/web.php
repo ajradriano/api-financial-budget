@@ -29,7 +29,7 @@ Route::get('/movimentacoes', function () {
     return view('movements')->with('data', json_decode($response->getContent(), true));
 })->name('movimentacoes');
 
-Route::get('/movements/cadastro/{id?}', [MovementController::class, 'cadastro'])->name('movements.cadastro');
+Route::get('/movimentacoes/cadastro/{id?}', [MovementController::class, 'cadastro'])->name('movimentacoes.cadastro');
 
 Route::get('/categorias', function () {
     $response = app(CategoryController::class)->index();
