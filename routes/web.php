@@ -6,6 +6,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,33 +22,33 @@ use App\Http\Controllers\UserController;
 // Route::redirect('/', '/home');
 
 
-Route::get('/home', function () {
-    return view('home');
-});
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/movimentacoes', function () {
-    $response = app(MovementController::class)->index();
-    return view('movements')->with('data', json_decode($response->getContent(), true));
-})->name('movimentacoes');
+    Route::get('/movimentacoes', function () {
+        $response = app(MovementController::class)->index();
+        return view('movements')->with('data', json_decode($response->getContent(), true));
+    })->name('movimentacoes');
 
-Route::get('/movimentacoes/cadastro/{id?}', [MovementController::class, 'cadastro'])->name('movimentacoes.cadastro');
+    Route::get('/movimentacoes/cadastro/{id?}', [MovementController::class, 'cadastro'])->name('movimentacoes.cadastro');
+    
+    Route::get('/categorias', function () {
+        $response = app(CategoryController::class)->index();
+        return view('categories')->with('data', json_decode($response->getContent(), true));
+    })->name('categorias');
 
-Route::get('/categorias', function () {
-    $response = app(CategoryController::class)->index();
-    return view('categories')->with('data', json_decode($response->getContent(), true));
-})->name('categorias');
+    Route::get('/metodos-pagamento', function () {
+        $response = app(PaymentMethodController::class)->index();
+        return view('payment-methods')->with('data', json_decode($response->getContent(), true));
+    })->name('metodos-pagamento');
 
-Route::get('/metodos-pagamento', function () {
-    $response = app(PaymentMethodController::class)->index();
-    return view('payment-methods')->with('data', json_decode($response->getContent(), true));
-})->name('metodos-pagamento');
+    Route::get('/tipos-movimentacao', function () {
+        $response = app(TypeController::class)->index();
+        return view('movement-types')->with('data', json_decode($response->getContent(), true));
+    })->name('tipos-movimentacao');
 
-Route::get('/tipos-movimentacao', function () {
-    $response = app(TypeController::class)->index();
-    return view('movement-types')->with('data', json_decode($response->getContent(), true));
-})->name('tipos-movimentacao');
-
-Route::get('/usuarios', function () {
-    $response = app(UserController::class)->index();
-    return view('users')->with('data', json_decode($response->getContent(), true));
-})->name('usuarios');
+    Route::get('/usuarios', function () {
+        $response = app(UserController::class)->index();
+        return view('users')->with('data', json_decode($response->getContent(), true));
+    })->name('usuarios');

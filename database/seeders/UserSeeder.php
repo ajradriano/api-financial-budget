@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
          User::factory()->create([
              'id' => fake()->uuid(),
              'name' => 'Deverson Dev',
-             'email' => 'deverson'.'@'.fake()->freeEmailDomain(),
+             'email' => 'deverson@mail.com',
              'login' => 'deverson',
              'email_verified_at' => Carbon::now(),
              'user_type' => 1,

@@ -15,7 +15,8 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/toastr.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
+    <script src="{{ asset('js/sweetAlert.js') }}"></script>
     @include('sweetalert::alert')
     @yield('content-style')
     @yield('sidebar-style')
@@ -32,7 +33,7 @@
                     <a class="navbar-brand" href="#"><img id="home-logo" src="{{ asset('assets/logo.png') }}" alt="logo"></a>
                 </div>
                 <div class="logout-icon">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
                 </div>
             </nav>
         </header>   

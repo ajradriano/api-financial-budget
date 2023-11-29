@@ -58,7 +58,6 @@
 @endsection
 <script>
         function redirecionarParaCadastro() {
-        // Substitua 'URL_DA_TELA_DE_CADASTRO' pelo URL real da tela de cadastro
         let url = "{{ url('movimentacoes/cadastro') }}"
         window.location.href = url;
     }

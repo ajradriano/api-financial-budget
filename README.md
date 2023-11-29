@@ -34,6 +34,8 @@ Inside the Docker container, run following commands:
 
 `php artisan key:generate`
 
+`php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
+
 `php artisan migrate`
 
 `php artisan db:seed`

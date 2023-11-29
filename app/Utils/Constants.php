@@ -2,21 +2,36 @@
 namespace App\Utils;
 
 class Constants {
-    // Conditions
+
+    /**
+     * ROLES
+     */
+    const ADMIN = 1;
+    const REGULAR = 0;
+
+
+    /**
+     * Conditions
+     */
     const REQUIRED          = 'Required field;';
     const EXISTS            = 'There is no record with the informed identifier;';
     const UNIQUE            = 'Duplicate registration;';
     const MIN_LENGTH        = 'Mandatory minimum size;';
     const MAX_LENGTH        = 'Maximum exceeded size;';
 
-    // Types
+    /**
+     * Types
+     */
     const UUID              = 'Must be Uuid (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx);';
     const STRING            = 'Must be text;';
     const NUMERIC           = 'It must be numerical;';
     const DATE              = 'Must be a date (yyyy-mm-dd hh:ii:ss);';
     const EMAIL             = 'Must be a valid email (example@domain.foo);';
 
-    // Misc
+    /**
+     * Misc
+     */
+
     //  Success
     const SAVE_SUCCESS      = 'Saved record!';
     const DELETE_SUCCESS    = 'Registration removed!';

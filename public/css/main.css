@@ -3,6 +3,7 @@
 @import "default.css";
 @import "font-faces.css";
 @import "bootstrap-datepicker.min.css";
+@import "variables.css";
 
 body {
     font-family: 'Roboto', sans-serif;

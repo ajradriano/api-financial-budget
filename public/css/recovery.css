@@ -1,0 +1,53 @@
+@import "main.css";
+
+.recovery-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+.input-container {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+h1, p, .input-container label {
+    color: var(--color-light-grayish);
+
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.recover-button {
+    background-color: var(--color-dark-gray);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 800ms;
+}
+
+.recover-button:hover {
+    background-color: var(--color-light-blue);
+    transition: 300ms;
+}

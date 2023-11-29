@@ -14,13 +14,13 @@
             <div class="row">
                 <div class="col-lg-4 mb-3">
                     <label for="input-description" class="form-label">Descrição</label>
-                    <input type="text" class="form-control" id="input-description" placeholder="Digite uma descrição" required>
+                    <input type="text" class="form-control" id="input-description" placeholder="Digite a descrição" required>
                 </div>
                 <div class="col-lg-2 mb-3">
                     <label for="input-value" class="form-label">Valor</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text">R$</span>
-                        <input type="decimal" class="form-control" id="input-value" aria-label="Valor" placeholder="123,45" required>
+                        <input type="decimal" class="form-control" id="input-value" aria-label="Valor" placeholder="Digite o valor" required>
                     </div>
                 </div>
                 <div class="col-lg-2 mb-3">
@@ -142,7 +142,6 @@
                         <i class="fa-solid fa-floppy-disk"></i> Salvar
                     </button>
                 </div>
-                <button onclick="exibirAlerta()">Clique para exibir SweetAlert</button>
                 
             </div>
         </div>
@@ -169,7 +168,12 @@
 
         $('.datepicker').datepicker({
             format: 'dd/mm/yyyy',
-            // startDate: '-3d'
+            clearBtn: true,
+            language: "pt-BR",
+            daysOfWeekHighlighted: "0,6",
+            calendarWeeks: true,
+            autoclose: true,
+            todayHighlight: true
         });
 
         $(document).ready( function () {
@@ -185,27 +189,32 @@
                     due_date: $('#input-due-date').val(),
                     payment_date: $('#input-payment-date').val(),
                 }
-
+                
                 localStorage.setItem('formData', JSON.stringify(formData))
+                console.log(formData)
                 
                 $.ajax({
                     url: '/api/movements',
                     type: 'POST',
                     contentType: 'application/json',
+                    headers: {
+                        'Authorization' : 'Bearer ' + sessionStorage.getItem('token')
+                    },
                     data: JSON.stringify(formData),
                     success: function (data) {
                         console.log('Saved successfully')
                         // redirectToList();
                     },
                     error: function (error) {
-                        console.error(formData)
                         console.error(error)
+                        swalError(error.responseText)
                         var dataStorage = localStorage.getItem('formData');
                         if (dataStorage) {
                             dataStorage = JSON.parse(dataStorage);
                             $.each(dataStorage, function (field, value) {
                                 $('[name="' + field + '"]').val(value);
                             });
+                            localStorage.removeItem('formData');
                         }
                     }
                 })
