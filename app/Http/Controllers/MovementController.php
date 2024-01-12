@@ -9,7 +9,6 @@ use App\Repositories\MovementRepository;
 use App\Utils\Constants;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 
 
 class MovementController implements MovementControllerInterface
@@ -102,8 +101,5 @@ public function cadastro($id = null)
     function destroy($id)
     {
         return response()->json($this->movement->delete($id));
-    }
-    function teste() {
-        Alert::alert('Title', 'Message');
     }
 }

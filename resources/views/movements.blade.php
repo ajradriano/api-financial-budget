@@ -9,18 +9,16 @@
     <div class="content">
         <h1 class="text-uppercase titulo my-4">Movimentações</h1>
         
-        <div class="header mb-2">
-            <button id="menuBotao" 
-                type="button" 
-                class="btn btn-outline-primary" 
+        <div class="header mb-0">
+            <span onclick="redirecionarParaCadastro()"
+                class="button-add"
                 data-bs-toggle="tooltip" 
                 data-bs-placement="top" 
-                title="Adicionar Novo Registro"
-                onclick="redirecionarParaCadastro()">
-                <i class="fa-solid fa-plus"></i>
-            </button>
+                title="Adicionar Novo Registro">
+                <i class="fa-solid fa-plus"></i> Adicionar
+            </span>
         </div>
-        
+        <hr>
         <table class="table table-striped">
             <thead>
                 <tr>

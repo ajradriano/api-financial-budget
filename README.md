@@ -28,14 +28,16 @@
 
 Inside the Docker container, run following commands:
 
-`composer install`
+composer install
 
-`cp .env.example .env`
+cp .env.example .env
 
-`php artisan key:generate`
+php artisan key:generate
 
-`php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 
-`php artisan migrate`
+php artisan jwt:secret
 
-`php artisan db:seed`
+php artisan migrate
+
+php artisan db:seed

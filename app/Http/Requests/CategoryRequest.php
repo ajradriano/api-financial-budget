@@ -33,12 +33,12 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required'         => ['attribute' => 'name', 'message' => Constants::REQUIRED],
-            'name.max'              => ['attribute' => 'name', 'message' => Constants::MAX_LENGTH],
-            'name.string'           => ['attribute' => 'name', 'message' => Constants::STRING],
+            'name.required'         => ['attribute' => 'name',          'message' => Constants::REQUIRED['message'],     'code' => Constants::REQUIRED['code']],
+            'name.max'              => ['attribute' => 'name',          'message' => Constants::MAX_LENGTH['message'],   'code' => Constants::MAX_LENGTH['code']],
+            'name.string'           => ['attribute' => 'name',          'message' => Constants::STRING['message'],       'code' => Constants::STRING['code']],
 
-            'description.max'       => ['attribute' => 'description', 'message' => Constants::MAX_LENGTH],
-            'description.string'    => ['attribute' => 'description', 'message' => Constants::STRING],
+            'description.max'       => ['attribute' => 'description',   'message' => Constants::MAX_LENGTH['message'],   'code' => Constants::MAX_LENGTH['code']],
+            'description.string'    => ['attribute' => 'description',   'message' => Constants::STRING['message'],       'code' => Constants::STRING['code']],
         ];
     }
 }

@@ -191,7 +191,7 @@
                 }
                 
                 localStorage.setItem('formData', JSON.stringify(formData))
-                console.log(formData)
+                console.log('FORM', formData)
                 
                 $.ajax({
                     url: '/api/movements',
