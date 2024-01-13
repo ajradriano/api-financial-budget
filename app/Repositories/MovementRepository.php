@@ -30,8 +30,9 @@ class MovementRepository implements MovementRepositoryInterface
      */
     public function readAll(): Collection|Movement
     {
-        return Movement::with(['type:id,name', 'category:id,name', 'payment_method:id,name'])
-        ->get();
+        return Movement::where('user_id', auth()->user()->id)
+            ->with(['type:id,name', 'category:id,name', 'payment_method:id,name'])
+            ->get();
     }
 
     /**
@@ -54,7 +55,7 @@ class MovementRepository implements MovementRepositoryInterface
     public function update($data, $id): Movement
     {
         $movement = Movement::findOrFail($id);
-        DB::transaction(fn() => $movement->fill($data->all())->save());
+        DB::transaction(fn () => $movement->fill($data->all())->save());
         return $movement;
     }
 
@@ -66,9 +67,9 @@ class MovementRepository implements MovementRepositoryInterface
     {
         $movement = Movement::find($id);
         if (!$movement) {
-            return ['error'=> Constants::DELETE_FAIL];
+            return ['error' => Constants::DELETE_FAIL];
         }
         $movement->delete();
-        return ['id' => $movement->id, 'message'=> Constants::DELETE_SUCCESS];
+        return ['id' => $movement->id, 'message' => Constants::DELETE_SUCCESS];
     }
 }
