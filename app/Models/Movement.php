@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Movement extends ModelUUID
 {
+    use HasFactory;
+    
     protected $fillable = [
         'id',
         'user_id',
