@@ -31,6 +31,8 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        auth()->user()->update(['last_login' => now()]);
+
         return $this->respondWithToken($token);
     }
 

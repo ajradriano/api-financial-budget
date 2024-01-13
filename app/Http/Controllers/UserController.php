@@ -9,6 +9,8 @@ use App\Repositories\UserRepository;
 use App\Utils\Constants;
 use Illuminate\Http\Client\Request;
 use Illuminate\Http\JsonResponse;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class UserController extends Controller implements UserControllerInterface
 {
@@ -26,7 +28,11 @@ class UserController extends Controller implements UserControllerInterface
     public function __construct(UserRepository $users)
     {
         $this->users = $users;
+    
+        // Aplica o middleware JWT às rotas protegidas desta controladora
+        $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
     }
+    
 
     public function index(): JsonResponse
     {
