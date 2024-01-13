@@ -34,11 +34,12 @@ class Constants {
      */
 
     //  Success
-    const SAVE_SUCCESS      = ['message' => 'Saved record!', 'code' => 900];
-    const DELETE_SUCCESS    = ['message' => 'Registration removed!', 'code' => 901];
+    const SAVE_SUCCESS      = ['message' => 'Saved record!', 'code' => 800];
+    const DELETE_SUCCESS    = ['message' => 'Registration removed!', 'code' => 801];
 
     //  Fail
-    const SAVE_FAIL         = ['message' => 'Record not saved!', 'code' => 902];
-    const DELETE_FAIL       = ['message' => 'This item does not exist or is not valid!', 'code' => 903];
-    const LOGIN_FAIL        = ['message' => 'It was not possible to login. Check the data!', 'code' => 904];
+    const NOT_ALLOWED       = ['message' => 'Route not allowed!', 'code' => 900];
+    const SAVE_FAIL         = ['message' => 'Record not saved!', 'code' => 901];
+    const DELETE_FAIL       = ['message' => 'This item does not exist or is not valid!', 'code' => 902];
+    const LOGIN_FAIL        = ['message' => 'It was not possible to login. Check the data!', 'code' => 903];
 }

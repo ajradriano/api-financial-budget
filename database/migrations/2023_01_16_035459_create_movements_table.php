@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('movements', function (Blueprint $table) {
-            $table->uuid('id')->primary('id');
+            $table->uuid('id');
             $table->uuid('user_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('type_id');
